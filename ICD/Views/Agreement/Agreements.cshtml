@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ICD.Models.Agreement>
+@{
+    ViewBag.Title = "Agreements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agreements</h2>
+
+@if (!Model.Any())
+{
+<p> We don't have any Agreements yet.</p>
+}
+else
+{
+<table class="table table-bordered table-hover">
+
+    <thead>
+
+        <tr>
+            <th>Agreement Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Author</th>
+            <th>LastModifiedDate</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var Agreement in Model)
+        {
+            <tr>
+                <td> @Html.ActionLink(Agreement.Name, "Details", "Agreement", new { id = Agreement.Id }, null) </td>
+                <td>@Agreement.Name</td>
+                <td>@Agreement.Status</td>
+                <td>@Agreement.Author</td>
+                <td>@Agreement.LastModifiedDate</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+}
